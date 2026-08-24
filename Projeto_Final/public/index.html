@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAVUNA SOFTWARES · Controle de Turmas</title>
+<script src="auth-guard.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+    .brand-icon img {
+    max-width: 20%;
+    height: auto;
+  }
+  </style>
+</head>
+<body>
+ ... <!-- Conteúdo da página -->
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-icon">
+      <img src="images.jpg" alt="Logo">
+    </div>
+    <div class="brand-text">
+      <strong>NÚCLEO ESCOLAR DA PAVUNA SOFTWARES</strong>
+      <span>Controle de Turmas &amp; Instrutores</span>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-view="grade">Grade da Semana</button>
+    <button class="tab" data-view="instrutores">Instrutores</button>
+    <button class="tab" data-view="alunos">Alunos</button>
+  </nav>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Menu mobile de acesso rápido -->
+<div class="mobile-panel" id="mobilePanel">
+  <button class="mobile-link" data-view="grade">Grade da Semana</button>
+  <button class="mobile-link" data-view="instrutores">Consulta Instrutores</button>
+  <button class="mobile-link" data-view="alunos">Consulta Alunos</button>
+</div>
+
+<main>
+
+  <!-- ===================== VIEW: GRADE DA SEMANA ===================== -->
+  <section class="view active" id="view-grade">
+    <div class="view-head">
+      <h1>Grade da semana</h1>
+      <p>Turmas em andamento por dia e turno. Toque numa turma para ver detalhes.</p>
+    </div>
+
+    <div class="filters">
+      <label>Turno
+        <select id="filtroTurno">
+          <option value="todos">Todos</option>
+          <option value="manha">Manhã</option>
+          <option value="tarde">Tarde</option>
+          <option value="noite">Noite</option>
+        </select>
+      </label>
+      <label>Buscar turma ou instrutor
+        <input type="text" id="filtroBusca" placeholder="ex.: Redes, Camila...">
+      </label>
+      <div class="legend">
+        <span class="dot dot-manha"></span> Manhã
+        <span class="dot dot-tarde"></span> Tarde
+        <span class="dot dot-noite"></span> Noite
+      </div>
+    </div>
+
+    <div class="grade-scroll">
+      <table class="grade" id="tabelaGrade">
+        <thead>
+          <tr>
+            <th class="col-dia">Dia</th>
+            <th>Manhã</th>
+            <th>Tarde</th>
+            <th>Noite</th>
+          </tr>
+        </thead>
+        <tbody id="corpoGrade"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== VIEW: INSTRUTORES ===================== -->
+  <section class="view" id="view-instrutores">
+    <div class="view-head">
+      <h1>Consulta de instrutores</h1>
+      <p>Filtre por instrutor para ver a carga de aulas no período.</p>
+    </div>
+
+    <div class="filters">
+      <label>Instrutor
+        <select id="filtroInstrutor"></select>
+      </label>
+      <label>De
+        <input type="date" id="dataInicial" value="2026-08-03">
+      </label>
+      <label>Até
+        <input type="date" id="dataFinal" value="2026-08-09">
+      </label>
+    </div>
+
+    <div class="table-wrap">
+      <table class="lista" id="tabelaInstrutor">
+        <thead>
+          <tr><th>Data</th><th>Dia</th><th>Turno</th><th>Turma</th><th>Sala</th><th>Status</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="empty-state" id="vazioInstrutor" hidden>Nenhuma aula encontrada para esse instrutor no período selecionado.</p>
+  </section>
+
+  <!-- ===================== VIEW: ALUNOS ===================== -->
+  <section class="view" id="view-alunos">
+    <div class="view-head">
+      <h1>Consulta de alunos</h1>
+      <p>Situação de matrícula e frequência por turma.</p>
+    </div>
+
+    <div class="filters">
+      <label>Turma
+        <select id="filtroTurma"></select>
+      </label>
+      <label>Buscar aluno
+        <input type="text" id="buscaAluno" placeholder="nome do aluno...">
+      </label>
+    </div>
+
+    <div class="cards-alunos" id="listaAlunos"></div>
+    <p class="empty-state" id="vazioAluno" hidden>Nenhum aluno encontrado com esses filtros.</p>
+  </section>
+
+</main>
+
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-card" id="detailCard"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
