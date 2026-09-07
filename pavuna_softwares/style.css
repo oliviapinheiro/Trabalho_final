@@ -264,3 +264,83 @@ table.lista tr:hover td{ background:#faf9f4; }
   .view{ animation:none; }
   html{ scroll-behavior:auto; }
 }
+/* ============ VIEW: CADASTRAR ALUNO / AUTH CARD ============ */
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-top: 12px;
+}
+
+.auth-alert {
+  display: none; /* Ativar via JS trocando para block se houver mensagem */
+  background: #F7E3DD;
+  color: var(--danger);
+  border: 1px solid rgba(176, 71, 47, 0.2);
+  padding: 10px 14px;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+#formCadastroAluno {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.auth-field input,
+.auth-field select {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 10px 12px;
+  background: #fcfcfa;
+  width: 100%;
+  transition: border-color 0.15s, outline 0.15s;
+}
+
+.auth-field input:focus,
+.auth-field select:focus {
+  outline: 2px solid var(--tarde);
+  outline-offset: 1px;
+  background: #ffffff;
+}
+
+.auth-submit {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 7px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: background 0.15s;
+  margin-top: 4px;
+}
+
+.auth-submit:hover {
+  background: var(--primary-soft);
+}

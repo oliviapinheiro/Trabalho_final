@@ -194,25 +194,126 @@ $podeVerRelatorios = in_array($tipo, ['coordenador', 'instrutor'], true);
 
   <?php if ($podeCadastrarAluno): ?>
   <!-- ===================== VIEW: CADASTRAR ALUNO ===================== -->
-  <section class="view" id="view-cadastro-aluno">
-    <div class="view-head">
-      <h1>Cadastrar aluno</h1>
-      <p>Coordenadores e instrutores podem matricular novos alunos.</p>
-    </div>
-    <div class="auth-card" style="max-width:420px;">
-      <div class="auth-alert" id="alertaCadastroAluno"></div>
-      <form id="formCadastroAluno" novalidate>
-        <div class="auth-field"><label>Nome completo</label><input type="text" id="caNome"></div>
-        <div class="auth-field"><label>E-mail</label><input type="email" id="caEmail"></div>
-        <div class="auth-field"><label>Senha provisória</label><input type="password" id="caSenha"></div>
-        <div class="auth-field"><label>Turma</label><select id="caTurma"></select></div>
-        <button type="submit" class="auth-submit">Cadastrar aluno</button>
-      </form>
-    </div>
-  </section>
-  <?php endif; ?>
+<style>
+  /* ============ VIEW: CADASTRAR ALUNO / AUTH CARD ============ */
+  .auth-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin: 12px auto; /* Alinhamento horizontal automático */
+  }
+
+  .auth-alert {
+    display: none; /* Ativar via JS trocando para block se houver mensagem */
+    background: #F7E3DD;
+    color: var(--danger);
+    border: 1px solid rgba(176, 71, 47, 0.2);
+    padding: 10px 14px;
+    border-radius: 7px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+
+  #formCadastroAluno {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .auth-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .auth-field label {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .auth-field input,
+  .auth-field select {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 10px 12px;
+    background: #fcfcfa;
+    width: 100%;
+    transition: border-color 0.15s, outline 0.15s;
+  }
+
+  .auth-field input:focus,
+  .auth-field select:focus {
+    outline: 2px solid var(--tarde);
+    outline-offset: 1px;
+    background: #ffffff;
+  }
+
+  .auth-submit {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 7px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: background 0.15s;
+    margin-top: 4px;
+  }
+
+  .auth-submit:hover {
+    background: var(--primary-soft);
+  }
+
+    .view-head {
+    text-align: center; /* Centraliza o H1 e o parágrafo */
+  }
+
+</style>
+
+<section class="view" id="view-cadastro-aluno">
+  <div class="view-head">
+    <h1>Cadastrar aluno</h1>
+    <p>Coordenadores e instrutores podem matricular novos alunos.</p>
+  </div>
+  <div class="auth-card" style="max-width:420px;">
+    <div class="auth-alert" id="alertaCadastroAluno"></div>
+    <form id="formCadastroAluno" novalidate>
+      <div class="auth-field">
+        <label for="caNome">Nome completo</label>
+        <input type="text" id="caNome">
+      </div>
+      <div class="auth-field">
+        <label for="caEmail">E-mail</label>
+        <input type="email" id="caEmail">
+      </div>
+      <div class="auth-field">
+        <label for="caSenha">Senha provisória</label>
+        <input type="password" id="caSenha">
+      </div>
+      <div class="auth-field">
+        <label for="caTurma">Turma</label>
+        <select id="caTurma"></select>
+      </div>
+      <button type="submit" class="auth-submit">Cadastrar aluno</button>
+    </form>
+  </div>
+</section>
+<?php endif; ?>
 
 </main>
+
 
 <div class="detail-overlay" id="detailOverlay"><div class="detail-card" id="detailCard"></div></div>
 
